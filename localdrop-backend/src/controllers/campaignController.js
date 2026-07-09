@@ -195,7 +195,8 @@ async function joinCampaign(req, res, next) {
 
     const { generateToken } = require('../utils/cryptoUtils');
     const qrToken = generateToken(16);
-    const qrLink = `${process.env.FRONTEND_URL || 'https://localdrop.com'}/c/${qrToken}`;
+    const origin = req.headers.origin || process.env.FRONTEND_URL || 'https://localdrop.com';
+    const qrLink = `${origin}/c/${qrToken}`;
 
     const client = await getClient();
     try {
@@ -513,7 +514,8 @@ async function createAndJoinMatchCampaign(req, res, next) {
 
       // 3. Create QR Code
       const qrToken = `qr_${campaignId.substring(0, 8)}_${creatorId.substring(0, 8)}`;
-      const qrLink = `http://localhost:3000/c/${qrToken}`;
+      const origin = req.headers.origin || process.env.FRONTEND_URL || 'https://localdrop.com';
+      const qrLink = `${origin}/c/${qrToken}`;
       await client.query(
         `INSERT INTO qr_codes (campaign_id, creator_id, qr_token, qr_link)
          VALUES ($1, $2, $3, $4)`,
