@@ -1,0 +1,222 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 39 100% 96%;
+  --foreground: 258 51% 4%;
+  --card: 36 100% 98%;
+  --card-foreground: 258 51% 4%;
+  --primary: 331 100% 59%;
+  --primary-foreground: 258 51% 4%;
+  --muted: 39 100% 89%;
+  --muted-foreground: 258 13% 32%;
+  --border: 258 51% 4%;
+  --input: 258 51% 4%;
+  --ring: 331 100% 59%;
+
+  --ld-ink: #08050f;
+  --ld-paper: #fff8ec;
+  --ld-cream: #fff1d5;
+  --ld-surface: #fffdf7;
+  --ld-pink: #ff2f92;
+  --ld-red: #ff4b2f;
+  --ld-mint: #00d7b9;
+  --ld-sky: #2aa8ff;
+  --ld-lime: #c9ff4f;
+  --ld-violet: #7c4dff;
+  --ld-amber: #ffc247;
+  --ld-hard-shadow: 8px 9px 0 var(--ld-ink);
+  --ld-soft-shadow: 0 18px 44px rgba(8, 5, 15, 0.16);
+}
+
+.dark {
+  --background: 258 51% 4%;
+  --foreground: 39 100% 96%;
+  --card: 258 35% 9%;
+  --card-foreground: 39 100% 96%;
+  --primary: 331 100% 66%;
+  --primary-foreground: 258 51% 4%;
+  --muted: 258 28% 15%;
+  --muted-foreground: 39 35% 78%;
+  --border: 39 100% 96%;
+  --input: 39 100% 96%;
+  --ring: 331 100% 66%;
+
+  --ld-ink: #fff8ec;
+  --ld-paper: #08050f;
+  --ld-cream: #151021;
+  --ld-surface: #120d1b;
+  --ld-hard-shadow: 8px 9px 0 rgba(255, 248, 236, 0.9);
+  --ld-soft-shadow: 0 18px 44px rgba(0, 0, 0, 0.38);
+}
+
+* {
+  border-color: hsl(var(--border));
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background:
+    linear-gradient(135deg, rgba(255, 75, 47, 0.14) 0 16%, transparent 16% 100%),
+    linear-gradient(210deg, rgba(0, 215, 185, 0.16) 0 18%, transparent 18% 100%),
+    linear-gradient(90deg, transparent 0 78%, rgba(201, 255, 79, 0.18) 78% 100%),
+    hsl(var(--background));
+  color: hsl(var(--foreground));
+  letter-spacing: 0;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--ld-lime);
+  color: #08050f;
+}
+
+.ld-grid-bg {
+  background-image:
+    linear-gradient(rgba(8, 5, 15, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(8, 5, 15, 0.08) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+.dark .ld-grid-bg {
+  background-image:
+    linear-gradient(rgba(255, 248, 236, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 248, 236, 0.08) 1px, transparent 1px);
+}
+
+.ld-app-shell {
+  background:
+    linear-gradient(145deg, rgba(255, 47, 146, 0.13) 0 21%, transparent 21% 100%),
+    linear-gradient(30deg, transparent 0 70%, rgba(42, 168, 255, 0.15) 70% 100%),
+    hsl(var(--background));
+}
+
+.ld-app-grid {
+  background-image:
+    linear-gradient(rgba(8, 5, 15, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(8, 5, 15, 0.07) 1px, transparent 1px),
+    linear-gradient(135deg, transparent 0 64%, rgba(255, 194, 71, 0.3) 64% 65%, transparent 65% 100%);
+  background-size: 28px 28px, 28px 28px, 100% 100%;
+  animation: grid-drift 24s linear infinite;
+}
+
+.dark .ld-app-grid {
+  background-image:
+    linear-gradient(rgba(255, 248, 236, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 248, 236, 0.07) 1px, transparent 1px),
+    linear-gradient(135deg, transparent 0 64%, rgba(255, 194, 71, 0.18) 64% 65%, transparent 65% 100%);
+}
+
+.ld-page-stage {
+  min-height: calc(100vh - 2.5rem);
+}
+
+.map-grid {
+  background-image:
+    linear-gradient(rgba(8, 5, 15, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(8, 5, 15, 0.1) 1px, transparent 1px),
+    radial-gradient(circle at 35% 45%, rgba(255, 75, 47, 0.44), transparent 7%),
+    radial-gradient(circle at 65% 58%, rgba(255, 194, 71, 0.42), transparent 8%),
+    radial-gradient(circle at 20% 70%, rgba(0, 215, 185, 0.34), transparent 9%),
+    radial-gradient(circle at 77% 30%, rgba(201, 255, 79, 0.3), transparent 7%);
+  background-size: 42px 42px, 42px 42px, 100% 100%, 100% 100%, 100% 100%, 100% 100%;
+}
+
+.demo-map-grid {
+  background-image:
+    linear-gradient(rgba(8, 5, 15, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(8, 5, 15, 0.1) 1px, transparent 1px),
+    linear-gradient(28deg, transparent 0 44%, rgba(255, 75, 47, 0.26) 44% 45%, transparent 45% 100%),
+    linear-gradient(150deg, transparent 0 58%, rgba(0, 215, 185, 0.22) 58% 59%, transparent 59% 100%);
+  background-size: 46px 46px, 46px 46px, 100% 100%, 100% 100%;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  border-radius: 6px;
+  padding: 2px;
+  transition: background-color 0.15s ease;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator:hover {
+  background-color: rgba(8, 5, 15, 0.08);
+}
+
+.dark input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1) brightness(0.9);
+}
+
+.glow-border-card {
+  position: relative;
+  border: 2px solid var(--ld-ink) !important;
+  background: var(--ld-surface);
+  box-shadow: var(--ld-hard-shadow), var(--ld-soft-shadow);
+}
+
+input:focus,
+textarea:focus,
+select:focus,
+input:focus-visible,
+textarea:focus-visible {
+  outline: none !important;
+  border-color: var(--ld-ink) !important;
+  box-shadow: 4px 5px 0 var(--ld-lime) !important;
+}
+
+.btn-shine-effect {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-shine-effect::after {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 -70%;
+  width: 42%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.45), transparent);
+  transform: skewX(-18deg);
+  pointer-events: none;
+}
+
+.btn-shine-effect:hover::after {
+  left: 130%;
+  transition: left 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--ld-ink);
+  border: 3px solid hsl(var(--background));
+  border-radius: 9999px;
+}
+
+.gradient-text-animated {
+  color: var(--ld-ink);
+  -webkit-text-fill-color: currentColor;
+  text-shadow: 2px 2px 0 var(--ld-lime);
+}
+
+@keyframes grid-drift {
+  0% {
+    background-position: 0 0, 0 0, 0 0;
+  }
+  100% {
+    background-position: 28px 28px, 28px 28px, 0 0;
+  }
+}
+
+.animated-grid-bg {
+  animation: grid-drift 24s linear infinite;
+}

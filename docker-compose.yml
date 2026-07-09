@@ -1,0 +1,58 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15-alpine
+    container_name: localdrop-db
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: sanjana009
+      POSTGRES_DB: localdrop
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d localdrop"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build: ./localdrop-backend
+    container_name: localdrop-backend
+    ports:
+      - "3000:3000"
+    environment:
+      PORT: 3000
+      NODE_ENV: production
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_NAME: localdrop
+      DB_USER: postgres
+      DB_PASSWORD: sanjana009
+      JWT_ACCESS_SECRET: 81c94d12f117b80642a04c3f26961d5ab45538cf7f239d95580f6ad1d147852f
+      JWT_REFRESH_SECRET: 9e972648b3eaceac0e1a127d72cc3e419f1de9e8c2e0bbe3106b7a58338a483b
+      QR_HMAC_SECRET: bad0a22595a8fc4863a7d57be918a618f19c6e95d6dd7cb7d90232dd51d0984b
+      CORS_ORIGIN: "*"
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - localdrop-uploads:/usr/src/app/uploads
+    command: ["sh", "-c", "node src/db/migrate.js && node src/db/runMigrations.js && node src/db/seed.js && npm start"]
+
+  frontend:
+    build:
+      context: ./localdrop-frontend
+      args:
+        - NEXT_PUBLIC_API_URL=http://localhost:3000/api
+    container_name: localdrop-frontend
+    ports:
+      - "3001:3000"
+    depends_on:
+      - backend
+
+volumes:
+  pgdata:
+  localdrop-uploads:
