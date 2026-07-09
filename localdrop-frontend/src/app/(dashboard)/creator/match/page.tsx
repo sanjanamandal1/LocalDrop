@@ -11,21 +11,28 @@ import { useCreatorMatches, useCreatorsList, useCreateMatchCampaign, useJoinCamp
 import { toast } from "sonner";
 import { useI18n } from "@/i18n/provider";
 import { LanguageToggle } from "@/components/i18n/language-toggle";
+import { useAuthStore } from "@/store/auth";
 
 // Dynamically load Leaflet Map to avoid SSR errors
 const LeafletMap = dynamic(() => import("@/components/dashboard/LeafletMap"), { ssr: false });
 
 export default function MatchMapPage() {
   const { t } = useI18n();
+  const user = useAuthStore((state) => state.user);
   const { data: dbCreators, isLoading: loadingCreators } = useCreatorsList();
   const [creatorId, setCreatorId] = useState<string>("");
 
   // Set initial creator when database loads
   useEffect(() => {
     if (dbCreators && dbCreators.length > 0 && !creatorId) {
-      setCreatorId(dbCreators[0].id);
+      const loggedInCreator = dbCreators.find((c) => c.id === user?.id);
+      if (loggedInCreator) {
+        setCreatorId(loggedInCreator.id);
+      } else {
+        setCreatorId(dbCreators[0].id);
+      }
     }
-  }, [dbCreators, creatorId]);
+  }, [dbCreators, creatorId, user]);
 
   const { data: dbMatches, isLoading: loadingMatches } = useCreatorMatches(creatorId || undefined);
   const joinCampaignMutation = useJoinCampaign();
