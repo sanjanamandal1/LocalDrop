@@ -1,5 +1,7 @@
 # LocalDrop 📍
 
+🚀 **[Live Demo Sandbox](https://local-drop-delta.vercel.app/login)**
+
 [![Next.js 15](https://img.shields.io/badge/Next.js-15-black?style=flat-square&logo=next.js)](https://nextjs.org/)
 [![Express.js](https://img.shields.io/badge/Express.js-4.19-lightgrey?style=flat-square)](https://expressjs.com/)
 [![PostgreSQL 15](https://img.shields.io/badge/PostgreSQL-15-blue?style=flat-square&logo=postgresql)](https://www.postgresql.org/)
@@ -57,7 +59,6 @@ sequenceDiagram
 ## 📂 Project Structure
 
 ```
-/hack (2)/hack (2)/hack/hack
 ├── localdrop-backend/       # Express.js REST API Server
 │   ├── src/
 │   │   ├── controllers/     # Route request handlers
