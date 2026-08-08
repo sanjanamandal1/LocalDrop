@@ -35,7 +35,7 @@ sequenceDiagram
 
 ---
 
-## ✨ Features
+## Features
 
 *   **🗺️ Interactive Match Map:** Creators locate nearby business campaigns on a map engine (`Leaflet.js`) and see their calculated **AI Match Score** and predicted walk-in yield.
 *   **🤖 AI Matchmaking Engine:** Ranks brand compatibility using a composite scoring mechanism:
@@ -81,7 +81,7 @@ sequenceDiagram
 
 ---
 
-## 🚀 Getting Started
+##  Getting Started
 
 ### 📋 Prerequisites
 *   Node.js (>= 18)
@@ -165,7 +165,7 @@ All seeded sandbox accounts share the same default testing password: **`password
 
 ---
 
-## ⚡ Deployment (Docker Compose)
+##  Deployment (Docker Compose)
 
 To build and orchestrate all services automatically via Docker, run from the folder containing `docker-compose.yml`:
 
