@@ -500,7 +500,7 @@ async function createAndJoinMatchCampaign(req, res, next) {
       // 1. Create campaign
       const campRes = await client.query(
         `INSERT INTO campaigns (business_id, name, description, campaign_type, offer_details, commission_type, commission_value, total_budget, spent_budget, lat, lng, radius_km, valid_from, valid_till, status)
-         VALUES ($1, $2, $3, 'discount', $4, 'percentage', 10.00, 5000.00, 0, $5, $6, 5, CURRENT_DATE, CURRENT_DATE + 30, 'active')
+         VALUES ($1, $2, $3, 'discount', $4, 'percentage', 10.00, 5000.00, 0, $5, $6, 5, CURRENT_DATE, CURRENT_DATE + 365, 'active')
          RETURNING id`,
         [business_id, campaignName, `Special partnership offer for ${creator.name}'s audience.`, offerDetails, business.lat, business.lng]
       );

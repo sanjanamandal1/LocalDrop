@@ -268,7 +268,7 @@ async function run() {
 
       const campaignRes = await client.query(
         `INSERT INTO campaigns (business_id, name, description, campaign_type, offer_details, image_url, commission_type, commission_value, total_budget, spent_budget, lat, lng, radius_km, valid_from, valid_till, status)
-         VALUES ($1, $2, $3, $4, $5, $6, $7, $8, 10000.00, 0, $9, $10, 5, CURRENT_DATE - 30, CURRENT_DATE + 30, 'active')
+         VALUES ($1, $2, $3, $4, $5, $6, $7, $8, 10000.00, 0, $9, $10, 5, CURRENT_DATE - 30, CURRENT_DATE + 365, 'active')
          RETURNING *`,
         [b.user_id, `${b.business_name} Promo`, `Join ${b.business_name} for this exclusive offer!`, type, offer, imageUrl, commType, commVal, b.lat, b.lng]
       );
